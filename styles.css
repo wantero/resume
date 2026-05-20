@@ -71,10 +71,16 @@ a:hover {
   max-width: 132px;
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.28);
-  background-image: url("assets/william-antero-profile.png");
-  background-position: center;
-  background-size: cover;
   box-shadow: 0 18px 38px rgba(0, 0, 0, 0.28);
+}
+
+.profile-photo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transform: scale(1.12);
 }
 
 .eyebrow,
@@ -405,14 +411,33 @@ li {
 }
 
 @media print {
+  @page {
+    size: A4;
+    margin: 12mm;
+  }
+
+  *,
+  *::before,
+  *::after {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
   :root {
     --canvas: #ffffff;
     --shadow: none;
   }
 
+  html {
+    background: #ffffff;
+  }
+
   body {
-    font-size: 10.5pt;
-    line-height: 1.42;
+    width: 100%;
+    min-width: 0;
+    background: #ffffff;
+    font-size: 9.8pt;
+    line-height: 1.36;
   }
 
   a {
@@ -421,86 +446,210 @@ li {
 
   .resume-shell {
     width: 100%;
+    max-width: none;
     margin: 0;
     border: 0;
     box-shadow: none;
   }
 
   .profile {
-    grid-template-columns: 92px 1fr;
-    padding: 26px 34px 22px;
+    display: grid;
+    grid-template-columns: 78px minmax(0, 1fr);
+    gap: 18px;
+    align-items: center;
+    padding: 20px 22px 18px;
     color: #ffffff;
+    background: #12213f !important;
+    break-inside: avoid;
   }
 
   .profile-photo {
-    width: 76px;
-    height: 76px;
-    min-width: 76px;
-    max-width: 76px;
+    width: 72px;
+    height: 72px;
+    min-width: 72px;
+    max-width: 72px;
+    box-shadow: none;
+  }
+
+  .profile-photo img {
+    width: 100%;
+    height: 100%;
+    transform: none;
   }
 
   h1 {
-    font-size: 28pt;
+    margin-bottom: 6px;
+    font-size: 27pt;
+    line-height: 1;
   }
 
   h2 {
-    font-size: 13pt;
+    margin-bottom: 8px;
+    font-size: 12pt;
+    line-height: 1.2;
   }
 
   h3 {
-    font-size: 10.5pt;
+    font-size: 9.8pt;
+  }
+
+  .profile .eyebrow {
+    color: #a7f3d0 !important;
+    font-size: 7.2pt;
   }
 
   .headline {
-    font-size: 10.5pt;
+    max-width: 100%;
+    margin-bottom: 8px;
+    color: #dbeafe !important;
+    font-size: 9.2pt;
+  }
+
+  .contact-list {
+    gap: 2px 10px;
+    color: #eef2ff !important;
+    font-size: 7.7pt;
+  }
+
+  .contact-list li:not(:last-child)::after {
+    width: 3px;
+    height: 3px;
+    margin-left: 10px;
+    background: #f59e0b !important;
   }
 
   .summary-block,
   .impact,
   .content-grid {
-    padding-inline: 34px;
+    padding-inline: 22px;
   }
 
   .summary-block {
-    grid-template-columns: 190px 1fr;
-    gap: 24px;
-    padding-top: 24px;
-    padding-bottom: 22px;
+    display: grid;
+    grid-template-columns: 170px minmax(0, 1fr);
+    gap: 20px;
+    padding-top: 18px;
+    padding-bottom: 16px;
+    break-inside: avoid;
+  }
+
+  .summary-block p:last-child {
+    font-size: 9.4pt;
   }
 
   .impact {
-    padding-top: 22px;
-    padding-bottom: 24px;
+    padding-top: 16px;
+    padding-bottom: 18px;
+    background: #fbfdff !important;
+    break-inside: avoid;
   }
 
   .impact-grid {
+    display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 8px;
+    gap: 7px;
   }
 
   .impact-grid article {
     min-height: 0;
-    padding: 10px;
+    padding: 8px;
+    background: #ffffff !important;
+    border-color: #dbe5f2 !important;
+    break-inside: avoid;
   }
 
   .metric {
-    font-size: 12pt;
-    margin-bottom: 6px;
+    margin-bottom: 4px;
+    font-size: 11pt;
   }
 
   .content-grid {
-    grid-template-columns: minmax(0, 1fr) 250px;
-    gap: 28px;
-    padding-top: 26px;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 220px;
+    gap: 22px;
+    padding-top: 18px;
     padding-bottom: 0;
   }
 
+  .section-heading {
+    margin-bottom: 12px;
+  }
+
   .role {
-    break-inside: avoid;
-    padding-bottom: 16px;
+    padding-left: 14px;
+    padding-bottom: 11px;
+    border-left-color: #dbe5f2 !important;
+    break-inside: auto;
+  }
+
+  .role-header {
+    gap: 10px;
+    margin-bottom: 6px;
+  }
+
+  .role-header span {
+    font-size: 7.8pt;
+  }
+
+  li {
+    margin-bottom: 4px;
+  }
+
+  .role li,
+  .side-section p,
+  .side-section li,
+  .side-section dd,
+  .impact-grid p {
+    font-size: 8.5pt;
   }
 
   .side-section {
-    break-inside: avoid;
+    padding-bottom: 12px;
+    break-inside: auto;
+  }
+
+  .side-column {
+    gap: 12px;
+  }
+
+  .tag-list {
+    gap: 5px;
+  }
+
+  .tag-list li {
+    padding: 3px 6px;
+    background: #e8f7f4 !important;
+    border-color: rgba(15, 118, 110, 0.18) !important;
+    font-size: 7.4pt;
+  }
+
+  .skill-list {
+    gap: 8px;
+  }
+
+  .skill-list dt {
+    font-size: 7.2pt;
+  }
+}
+
+@media print and (max-width: 700px) {
+  .profile,
+  .summary-block,
+  .content-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .impact-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .role-header {
+    display: block;
+  }
+
+  .role-header span {
+    display: block;
+    margin-top: 2px;
+    white-space: normal;
   }
 }

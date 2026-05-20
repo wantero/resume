@@ -11,6 +11,7 @@ try {
 
 const url = process.argv[2] ?? "http://127.0.0.1:8000/index.html";
 const outputDir = process.argv[3] ?? "/private/tmp";
+const mode = process.argv[4] ?? "screen";
 const viewports = [
   { width: 1440, height: 1200, name: "desktop" },
   { width: 390, height: 1200, name: "mobile" },
@@ -24,9 +25,24 @@ for (const viewport of viewports) {
     viewport: { width: viewport.width, height: viewport.height },
   });
   await page.goto(url, { waitUntil: "networkidle" });
+  if (mode === "print") {
+    await page.emulateMedia({ media: "print" });
+  }
 
-  const screenshot = `${outputDir}/resume-${viewport.name}.png`;
+  const screenshot = `${outputDir}/resume-${mode}-${viewport.name}.png`;
   await page.screenshot({ path: screenshot, fullPage: true });
+  const pdf =
+    mode === "print" && viewport.name === "desktop"
+      ? `${outputDir}/resume-print.pdf`
+      : null;
+  if (pdf) {
+    await page.pdf({
+      path: pdf,
+      format: "A4",
+      printBackground: true,
+      preferCSSPageSize: true,
+    });
+  }
 
   const metrics = await page.evaluate(() => {
     const doc = document.documentElement;
@@ -56,7 +72,7 @@ for (const viewport of viewports) {
     };
   });
 
-  results.push({ viewport: viewport.name, screenshot, metrics });
+  results.push({ viewport: viewport.name, screenshot, pdf, metrics });
   await page.close();
 }
 
