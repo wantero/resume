@@ -2,6 +2,7 @@
 
 Principal Solution Architect | Staff+ Engineering Leader  
 Enterprise Platforms | Distributed Systems | AI & Cloud Solutions  
+Open to remote opportunities  
 Sao Paulo, Brazil | williamantero@gmail.com | +55 11 98987-2002  
 LinkedIn: https://www.linkedin.com/in/wantero | GitHub: https://github.com/wantero
 
@@ -16,6 +17,18 @@ Principal-level solution architect and engineering leader with more than 20 year
 - Architected AI-powered and cloud-native enterprise platforms using Azure, Kubernetes, OpenSearch, Redis, and distributed systems.
 - Founded and scaled a technology consulting company serving enterprise clients across Latin America.
 - Built scalable enterprise platforms across cloud, ERP modernization, integrations, and distributed environments for more than 20 years.
+
+## Selected Enterprise Projects
+
+- Global Ruby on Rails platform modernization
+- Multi-country Workday integration architecture
+- AI-powered enterprise automation systems
+- Insurance direct-to-consumer platform
+- Cloud-native data migration pipelines
+
+## Engineering Philosophy
+
+I enjoy solving complex scalability and modernization challenges while staying close to the code, the architecture, and the engineering teams delivering the work.
 
 ## Work Experience
 

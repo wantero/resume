@@ -42,3 +42,7 @@ node tools/validate-page.mjs http://127.0.0.1:8000/index.html /tmp
 ## Privacy Note
 
 This resume includes direct email and phone contact information. For a public repository, consider replacing the phone number with LinkedIn contact routing if reducing spam exposure is important.
+
+## SEO Note
+
+The Open Graph and canonical metadata currently assume the site will be published at `https://wantero.github.io/resume/`. If the final GitHub Pages URL changes, update the `og:url`, `og:image`, and `canonical` values in `index.html`.
